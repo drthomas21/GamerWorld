@@ -1,30 +1,37 @@
-module.exports = function(mongoose) {;
+var validator = require('validator');
+
+module.exports = function(mongoose) {
+	var emailValidation = [function(email){
+		return validator.isEmail(email);
+	}, "Please input a valid email"];
 	var Schema = mongoose.Schema;
 	
-	var Games = mongoose.model("Games", new Schema({
+	var Users = mongoose.model("Users", new Schema({
 		name:           String,
-		systems:        [Schema.Types.ObjectId]		
+		email:          {type: String, validator: emailValidation},
+		created:        {type: Date, default: Date.now},
+		type:           {type: Number, default: 2}		
 	}));
 	
 	return {
 		create: function() {
-			return new Games();
+			return new Users();
 		}, 
 		
 		fetchAll: function(callback) {
-			Games.find({},function(err,rows) {
+			Users.find({},function(err,rows) {
 				callback(err,rows);
 			});
 		},
 		
 		fetchById: function(id, callback) {
-			Games.findById(id,function(err,rows) {
+			Users.findById(id,function(err,rows) {
 				callback(err,rows);
 			});
 		},
 		
 		search: function(args, callback) {
-			Games.find(args,function(err,rows){
+			Users.find(args,function(err,rows){
 				callback(err,rows);
 			});
 		},

@@ -1,5 +1,13 @@
 <?php
 class Template extends TemplateFactory {
+	function __construct() {
+		$this->addHeaderScript("jquery", "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
+		$this->addHeaderScript("angularJS", "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js",array("jquery"));
+		$this->addStyle("bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css");
+		//$this->addStyle("bootstrap-theme", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css");
+		$this->addHeaderScript("bootstrap", "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js",array("jquery"));
+	}
+	
 	public function addHeaderScript($name,$src,array $deps = array()) {
 		if(!isset($this->scripts[$name])) {
 			$this->scripts[$name] = array(
@@ -10,6 +18,7 @@ class Template extends TemplateFactory {
 					"footer" => false			
 			);
 		}
+
 	}
 	
 	public function addFooterScript($name,$src,array $deps = array()) {

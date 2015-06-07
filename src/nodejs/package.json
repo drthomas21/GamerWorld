@@ -18,6 +18,7 @@
   "dependencies": {
     "express": "^4.12.4",
     "mongoose": "^4.0.4",
-    "superagent": "^1.2.0"
+    "superagent": "^1.2.0",
+    "validator": "^3.40.0"
   }
 }

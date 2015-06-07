@@ -1,30 +1,29 @@
 module.exports = function(mongoose) {;
 	var Schema = mongoose.Schema;
 	
-	var Games = mongoose.model("Games", new Schema({
-		name:           String,
-		systems:        [Schema.Types.ObjectId]		
+	var GameSystems = mongoose.model("GameSystems", new Schema({
+		name:           String,	
 	}));
 	
 	return {
 		create: function() {
-			return new Games();
+			return new GameSystems();
 		}, 
 		
 		fetchAll: function(callback) {
-			Games.find({},function(err,rows) {
+			GameSystems.find({},function(err,rows) {
 				callback(err,rows);
 			});
 		},
 		
 		fetchById: function(id, callback) {
-			Games.findById(id,function(err,rows) {
+			GameSystems.findById(id,function(err,rows) {
 				callback(err,rows);
 			});
 		},
 		
 		search: function(args, callback) {
-			Games.find(args,function(err,rows){
+			GameSystems.find(args,function(err,rows){
 				callback(err,rows);
 			});
 		},
