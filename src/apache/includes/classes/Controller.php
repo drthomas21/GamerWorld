@@ -17,6 +17,8 @@ abstract class Controller {
 		if(get_parent_class($classname) == __CLASS__) {
 			$Instance = new $classname();
 			$Instance->Template = TemplateFactory::startTemplate();
+			$Instance->setUp();
+			$Instance->Template->setTemplateVariable("Auth",RestService::getInstance("AuthRestService"));
 			return $Instance;
 		} else {
 			throw new InvalidChildException(__CLASS__, $classname);
@@ -26,6 +28,11 @@ abstract class Controller {
 	public final function renderPage() {
 		$this->Template->renderView();
 	}
+	
+	abstract public function actionIndex();
+	//TODO: enforce this
+	//abstract public function actionPartialIndex();
+	abstract protected function setUp();
 	
 	protected function __construct() { }
 	

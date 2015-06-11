@@ -4,8 +4,13 @@ class BrowsePlayersController extends Controller {
 	
 	}
 	
-	public function actionIndex() {
+	protected function setUp() {
 		$this->Template->content = "players/index";
-		$this->Template->setTemplateVariable("title", "Welcome to Gamer World");
+		$this->Template->setTemplateVariable("title", "Browse for a player");
+		$this->Template->setTemplateVariable('activeTab', 'players');
+	}
+	
+	public function actionIndex() {
+		
 	}
 }

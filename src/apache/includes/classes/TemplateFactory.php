@@ -11,6 +11,10 @@ class TemplateFactory {
 			"title" => "Gamer World"
 	);
 	
+	/**
+	 * 
+	 * @return Template
+	 */
 	public static function startTemplate() {
 		return new Template();
 	}
