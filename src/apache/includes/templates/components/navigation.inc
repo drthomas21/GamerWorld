@@ -22,18 +22,18 @@
         <li <?= ($activeTab == "players" ? "class='active'" : "" )?>><a href="/players">Players</a></li>
       </ul>
       <?php if($Auth->isLoggedIn()): ?>
-      <ul class="nav navbar-nav navbar-right col-sm-1">      	
+      <ul class="nav navbar-nav navbar-right col-sm-1" ng-controller="NavAuthController">      	
         <li class="dropdown pull-left">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"  aria-hidden="true"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/settings">Account Settings</a></li>
-            <li><a href="/signout">Sign Out</a></li>
+            <li class="settings"><a href="/settings">Account Settings</a></li>
+            <li class="signout"><a href="/signout">Sign Out</a></li>
           </ul>
         </li>        
       </ul>
       <?php else: ?>
-      <ul class="nav navbar-nav navbar-right col-sm-2">
-      	<li class="pull-left"><a href="/login">Log In / Signup</a></li>
+      <ul class="nav navbar-nav navbar-right col-sm-3" ng-controller="NavAuthController">
+      	<li class="text-center col-lg-12 login"><a href="/login">Log In / Sign Up</a></li>
       </ul>
       <?php endif; ?>
     </div><!-- /.navbar-collapse -->

@@ -29,6 +29,10 @@ abstract class Controller {
 		$this->Template->renderView();
 	}
 	
+	public final function renderContent() {
+		return $this->Template->renderContent($this->Template->content);
+	}
+	
 	abstract public function actionIndex();
 	//TODO: enforce this
 	//abstract public function actionPartialIndex();

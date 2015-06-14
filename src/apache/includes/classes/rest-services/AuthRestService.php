@@ -15,7 +15,7 @@ class AuthRestService extends RestService {
 			
 			return false; //TODO: remove 
 			
-			$json = json_decode($this->get($this->request."/valid",$args));
+			$json = json_decode($this->get($this->request."/validate",$args));
 			if($json->ok) {
 				$this->isAuth = $json->data;
 			}

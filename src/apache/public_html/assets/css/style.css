@@ -1,0 +1,50 @@
+.social-icons {
+	width: 48px;
+	height: 48px;
+	background-image: url('/assets/img/social-icons.png');
+	background-color: #fff;
+	background-repeat: no-repeat;
+	outline: none;
+	border: 0px;
+	
+}
+
+.social-icons:focus {
+	outline: none;
+	border: 0px;
+}
+
+.social-icons:active {
+	background-image: url('/assets/img/social-icons-hover.png');
+	outline: none;
+	border: 0px;
+}
+
+.social-icons.twitter {
+	background-position: -0px 0px;
+}
+
+.social-icons.facebook {
+	background-position: -48px 0px;
+}
+
+.social-icons.google {
+	background-position: -95px 0px;
+}
+
+.social-icons.steam {
+	background-position: -144px 0px;
+}
+
+.social-icons.psn {
+	background-position: -191px 0px;
+}
+
+.social-icons.xbox {
+	background-position: -241px 0px;
+}
+
+li.login a, li.login a:active, li.login a:focus {
+	outline:none;
+	border: 0px;
+}
