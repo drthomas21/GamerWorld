@@ -1,6 +1,6 @@
 <?php if(!$isView):?><section ng-controller="LoginController"><?php endif; ?>
 <div class="col-lg-12 text-center">
-	<div class="col-lg-<?= ($isView ? 12 : 6); ?> center-block" style="float: none">
+	<div class="col-lg-<?= ($isView ? 12 : 8); ?> center-block" style="float: none">
 		<form class="inline-form center-block col-xs-6" style="max-width: 400px">
 			<h2>Log In</h2>
 			&nbsp;<small ng-show="loginModel.respError.length > 0" class="text-danger">{{loginModel.respError.join('. ')}}</small>

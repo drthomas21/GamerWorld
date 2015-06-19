@@ -1,8 +1,8 @@
 {
 	"mongodb": {
 		"username": "rpz0n3_User",
-		"password": "password",
-		"host": "7?QLz$5%NBEa7bq9",
+		"password": "7?QLz$5%NBEa7bq9",
+		"host": "localhost",
 		"port": 27017,
 		"database": "rpzone"
 	},
