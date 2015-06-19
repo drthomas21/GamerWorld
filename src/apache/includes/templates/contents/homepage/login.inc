@@ -3,35 +3,37 @@
 	<div class="col-lg-<?= ($isView ? 12 : 6); ?> center-block" style="float: none">
 		<form class="inline-form center-block col-xs-6" style="max-width: 400px">
 			<h2>Log In</h2>
-			<div class="form-group col-lg-12" ng-class="{'has-error': loginModel.errors.email,'has-success': loginModel.errors.email}">
+			&nbsp;<small ng-show="loginModel.respError.length > 0" class="text-danger">{{loginModel.respError.join('. ')}}</small>
+			<div class="form-group col-lg-12" ng-class="{'has-error': loginModel.errors.email,'has-success': !loginModel.errors.email}">
 				<label for="login" ng-hide="loginModel.errors.email.length > 0">Email: </label>
 				<p ng-show="loginModel.errors.email.length > 0">{loginModel.errors.email}</p>
-				<input type="email" class="form-control" id="login" name="login" ng-model="loginModel.email.text" required/>
+				<input type="email" class="form-control" id="login" name="login" ng-model="loginModel.email.text" ng-change="doLogin()" required/>
 			</div>
-			<div class="form-group col-lg-12" ng-class="{'has-error': loginModel.errors.password,'has-success': loginModel.errors.password}">
-				<label for="password">Password: <small>(min length: {{loginModel.password.minLength}})</small></label>
-				<input type="password" class="form-control" id="password" name="password" ng-model="loginModel.password.text" ng-minlength="loginModel.password.minLength" required/>
+			<div class="form-group col-lg-12" ng-class="{'has-error': loginModel.errors.password,'has-success': !loginModel.errors.password}">
+				<label for="password">Password:</label>
+				<input type="password" class="form-control" id="password" name="password" ng-model="loginModel.password.text" ng-change="doLogin()" required/>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-primary" ng-click="doLogin()">Log In</button>
+				<button class="btn btn-primary" ng-click="doLogin(true)">Log In</button>
 			</div>
 		</form>
 		<form class="inline-form center-block col-xs-6" style="max-width: 400px">
 			<h2>Sign Up</h2>
-			<div class="form-group col-lg-12" ng-class="{'has-error': signupModel.errors.email,'has-success': signupModel.errors.email}">
+			&nbsp;<small ng-show="signupModel.respError.length > 0" class="text-danger">{{signupModel.respError.join('. ')}}</small>
+			<div class="form-group col-lg-12" ng-class="{'has-error': signupModel.errors.email,'has-success': !signupModel.errors.email}">
 				<label for="login">Email: </label>
-				<input type="email" class="form-control" id="login" name="login" ng-model="signupModel.email.text"/>
+				<input type="email" class="form-control" id="login" name="login" ng-model="signupModel.email.text" ng-change="doSignup()" required/>
 			</div>
-			<div class="form-group col-lg-6" ng-class="{'has-error': signupModel.errors.password,'has-success': signupModel.errors.password}">
-				<label for="password">Password: </label>
-				<input type="password" class="form-control" id="password" name="password" ng-model="signupModel.password.text"/>
+			<div class="form-group col-lg-6" ng-class="{'has-error': signupModel.errors.password,'has-success': !signupModel.errors.password}">
+				<label for="password">Password: <br /><small>(min length: {{signupModel.password.minLength}})</small></label>
+				<input type="password" class="form-control" id="password" name="password" ng-minlength="signupModel.password.minLength" ng-model="signupModel.password.text" ng-change="doSignup()" required/>
 			</div>
-			<div class="form-group col-lg-6" ng-class="{'has-error': signupModel.errors.repeatPassword,'has-success': signupModel.errors.repeatPassword}">
-				<label for="repeatPassword">Repeat Password: </label>
-				<input type="password" class="form-control" id="repeatPassword" name="repeatPassword" ng-model="signupModel.repeatPassword.text"/>
+			<div class="form-group col-lg-6" ng-class="{'has-error': signupModel.errors.repeatPassword,'has-success': !signupModel.errors.repeatPassword}">
+				<label for="repeatPassword">Password Again: <br />&nbsp;<small ng-show="signupModel.password.text != signupModel.repeatPassword.text" class="text-danger">Not the same password</small></label>
+				<input type="password" class="form-control" id="repeatPassword" name="repeatPassword" ng-model="signupModel.repeatPassword.text" ng-pattern="signupModel.password.text" ng-change="doSignup()" required/>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-primary" ng-click="doSignup()">Sign Up</button>
+				<button class="btn btn-primary" ng-click="doSignup(true)">Sign Up</button>
 			</div>
 		</form>
 	</div>

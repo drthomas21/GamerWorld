@@ -1,0 +1,13 @@
+{
+	"mongodb": {
+		"username": "rpz0n3_User",
+		"password": "password",
+		"host": "7?QLz$5%NBEa7bq9",
+		"port": 27017,
+		"database": "rpzone"
+	},
+	"express": {
+		"port": 8008,
+		"allowedDomain": "http://realplayerzone.com"
+	}
+}

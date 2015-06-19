@@ -1,5 +1,5 @@
 var config = {
-		backend: "https://dev.gamerworld.com:8008"
+		backend: "http://dev.gamerworld.com:8008"
 };
 var app = angular.module("rpzone",['ngCookies','ngRoute','ngSanitize','ui.bootstrap'])
 	.config(function($routeProvider, $locationProvider) {

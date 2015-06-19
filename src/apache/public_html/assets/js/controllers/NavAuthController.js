@@ -7,7 +7,8 @@ app.controller("NavAuthController",function($scope,$modal) {
 				size: 'lg',
 				controller: "LoginController"
 			});
-			setTimeout(function() {
+			
+			var timeoutCb = function() {
 				var height = 0;
 				angular.element(".modal-content").children().each(function(i) {
 					height += angular.element(angular.element(".modal-content").children()[i]).height();
@@ -17,7 +18,10 @@ app.controller("NavAuthController",function($scope,$modal) {
 					height += 20;
 					angular.element(".modal-content").css('height',height+"px");
 				}
-			}, 50);
+			}
+			setTimeout(timeoutCb, 50);
+			setTimeout(timeoutCb, 100);
+			setTimeout(timeoutCb, 500);
 			return false;
 		});
 	});

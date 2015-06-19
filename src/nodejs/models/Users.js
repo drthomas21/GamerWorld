@@ -7,8 +7,10 @@ module.exports = function(mongoose) {
 	var Schema = mongoose.Schema;
 	
 	var Users = mongoose.model("Users", new Schema({
-		name:           String,
-		email:          {type: String, validator: emailValidation},
+		name:           {type: String, default: "New User"},
+		email:          {type: String, validator: emailValidation, lowercase: true, unique: true},
+		password:		{type: String, minlength: [5,"The {PATH} has less than {MINLENGTH} characters"]},
+		token:			{type: String, default: ''},
 		created:        {type: Date, default: Date.now},
 		type:           {type: Number, default: 2}		
 	}));
@@ -39,7 +41,7 @@ module.exports = function(mongoose) {
 		save: function(instance, callback) {
 			instance.save(function(err,Model) {
 				if(err) {
-					callback('There was an issue with saving', Model);
+					callback(err, Model);
 				} else {
 					callback(null, Model);
 				}

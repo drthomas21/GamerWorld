@@ -9,7 +9,7 @@
 				var request = function(type,service,arguments,successCb,errorCb) {
 					$http({
 						method: type,
-						url: (backend+'/'+service).replace("//",'/'),
+						url: backend+('/'+service).replace("//",'/'),
 						data: arguments
 					})
 					.success(successCb)
@@ -20,15 +20,15 @@
 					request("GET",service,arguments,successCb,errorCb);
 				};
 				
-				this.post = function() {
+				this.post = function(service,arguments,successCb,errorCb) {
 					request("POST",service,arguments,successCb,errorCb);
 				};
 				
-				this.put = function() {
+				this.put = function(service,arguments,successCb,errorCb) {
 					request("PUT",service,arguments,successCb,errorCb);
 				};
 				
-				this.delete = function() {
+				this.delete = function(service,arguments,successCb,errorCb) {
 					request("DELETE",service,arguments,successCb,errorCb);
 				};
 			};

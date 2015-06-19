@@ -1,0 +1,13 @@
+{
+	"mongodb": {
+		"username": "rpz_user",
+		"password": "password",
+		"host": "localhost",
+		"port": 27017,
+		"database": "rpzone"
+	},
+	"express": {
+		"port": 8008,
+		"allowedDomain": "http://dev.gamerworld.com"
+	}
+}
