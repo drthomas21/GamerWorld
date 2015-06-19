@@ -8,13 +8,12 @@
 			
 			var AuthRestfulService = function() {
 				var service = "auth/";
-				var isAuth = false;
 				this.checkLogin = function(callback) {
 					var args = {
 							id: $cookies[userCookie],
 							token: $cookies[tokenCookie]
 					};
-					RestfulService.get(service+'validate',args,function(data){
+					RestfulService.post(service+'validate',args,function(data){
 						//SuccessCb
 						if(typeof(callback) == "function") {
 							callback(data);
@@ -30,12 +29,16 @@
 					$cookies[tokenCookie] = UserModel.token;
 					that.checkLogin(function(resp){
 						if(resp.ok) {
-							isAuth = resp.data;
-							console.log(isAuth);
 							$rootScope.$broadcast("isUserAuth",isAuth);
 						}
 					})
 				};
+				
+				this.releaseCreds = function() {
+					delete $cookies[userCookie];
+					delete $cookies[tokenCookie];
+					isAuth = resp.data;
+				}
 				
 				this.doSignup = function(email, password, callback) {
 					var args = {
