@@ -32,12 +32,18 @@ abstract class Controller {
 		return $this->Template->renderContent($this->Template->content);
 	}
 	
-	abstract public function actionIndex();
+	abstract public function actionIndex($isView = false);
 	//TODO: enforce this
 	//abstract public function actionPartialIndex();
 	abstract protected function setUp();
 	
 	protected function __construct() { }
+	
+	public function actionLogin($isView = false) {
+		$this->Template->content = "homepage/login";
+		$this->Template->setTemplateVariable('isView', isset($_GET['modal']) ?  true : false);
+		$this->Template->setTemplateVariable("title", "RPZone | Login");
+	}
 	
 	
 	

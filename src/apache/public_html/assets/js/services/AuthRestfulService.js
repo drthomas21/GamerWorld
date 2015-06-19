@@ -29,7 +29,7 @@
 					$cookies[tokenCookie] = UserModel.token;
 					that.checkLogin(function(resp){
 						if(resp.ok) {
-							$rootScope.$broadcast("isUserAuth",isAuth);
+							$rootScope.$broadcast("isUserAuth",resp.data);
 						}
 					})
 				};
@@ -37,7 +37,6 @@
 				this.releaseCreds = function() {
 					delete $cookies[userCookie];
 					delete $cookies[tokenCookie];
-					isAuth = resp.data;
 				}
 				
 				this.doSignup = function(email, password, callback) {

@@ -25,6 +25,8 @@ class Template extends TemplateFactory {
 		
 		$this->addHeaderScript("navAuthController", "/assets/js/controllers/NavAuthController.js",array(self::ANGULAR,"authRestfulService"));
 		$this->addHeaderScript("loginController", "/assets/js/controllers/LoginController.js",array(self::ANGULAR,"authRestfulService"));
+		$this->addHeaderScript("homepageController", "/assets/js/controllers/HomepageController.js",array(self::ANGULAR));
+		$this->addHeaderScript("profileController", "/assets/js/controllers/ProfileController.js",array(self::ANGULAR));
 	}
 	
 	public function addHeaderScript($name,$src,array $deps = array()) {

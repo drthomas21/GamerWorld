@@ -1,4 +1,8 @@
 var validator = require('validator');
+var sha256 = require('sha256');
+var generateToken = function(Model,req) {
+	return sha256(Model.email + req.connection.remoteAddress + (new Date()));
+};
 
 module.exports = function(mongoose) {
 	var emailValidation = [function(email){
@@ -46,6 +50,10 @@ module.exports = function(mongoose) {
 					callback(null, Model);
 				}
 			});
+		},
+		
+		auth: function(Model, req) {
+			return Model.token == generateToken(Model,req);
 		}
 	};
 }

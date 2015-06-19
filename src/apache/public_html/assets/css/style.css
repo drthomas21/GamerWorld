@@ -48,3 +48,13 @@ li.login a, li.login a:active, li.login a:focus {
 	outline:none;
 	border: 0px;
 }
+
+.modal-content {
+	padding-bottom: 20px;
+}
+
+@media(min-width: 768px) {
+	.modal-content {
+		float:left;
+	}
+}

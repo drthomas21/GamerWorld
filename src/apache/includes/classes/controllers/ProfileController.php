@@ -10,7 +10,7 @@ class ProfileController extends Controller {
 		$this->Template->setTemplateVariable("activeTab", 'profile');
 	}
 	
-	public function actionIndex() {
+	public function actionIndex($isView = false) {
 		$this->Template->setTemplateVariable('subcontent', 'profile/timeline');
 	}
 	

@@ -1,25 +1,27 @@
 var config = {
-		backend: "http://dev.gamerworld.com:8008"
+		backend: "http://"+window.location.host+":8008"
 };
 var app = angular.module("rpzone",['ngCookies','ngRoute','ngSanitize','ui.bootstrap'])
-	.config(function($routeProvider, $locationProvider) {
+	.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
+		$locationProvider.html5Mode({enabled: true,requireBase: false}).hashPrefix('!');
 		$routeProvider
-			.when('/clans', {
-				templateUrl: '/view/clans'
-			})
-			.when('/guilds', {
-				templateUrl: '/view/clans'
-			})
-			.when('/login', {
-				templateUrl: '/view/login'
-			})
-			.when('/', {
-				templateUrl: '/view/homepage'
-			});
+		.when('/',{
+			templateUrl: 'view/home',
+			controller: 'HomepageController'
+		})
+		.when('/login', {
+			templateUrl: 'view/login',
+			controller: 'LoginController'
+		})
+		.when('/profile', {
+			templateUrl: 'view/profile',
+			controller: 'ProfileController'
+		})
 		
-		$locationProvider.html5Mode(true);
-			
-	});
+		.otherwise({
+			redirectTo: '/'
+		});
+	}]);
 
 function shuffle(o){
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);

@@ -23,7 +23,7 @@ module.exports = function(server,mongoose,ResponseClass,config) {
 		if(typeof(id) == "string" && id.length > 0 && typeof(token) == "string" && token.length > 0) {
 			Users.fetchById(id,function(err,Model) {
 				if(!err) {
-					if(Model && Model.token == token) {
+					if(Model && Model.token == token && Users.auth(Model,req)) {
 						Response.setData(true);
 					} 
 				} 

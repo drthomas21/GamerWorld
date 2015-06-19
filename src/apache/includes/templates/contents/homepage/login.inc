@@ -1,7 +1,6 @@
-<?php if(!$isView):?><section ng-controller="LoginController"><?php endif; ?>
-<div class="col-lg-12 text-center">
+<div class="col-lg-12 text-center" style="z-index: 1">
 	<div class="col-lg-<?= ($isView ? 12 : 8); ?> center-block" style="float: none">
-		<form class="inline-form center-block col-xs-6" style="max-width: 400px">
+		<form class="inline-form center-block col-sm-6" style="max-width: 400px">
 			<h2>Log In</h2>
 			&nbsp;<small ng-show="loginModel.respError.length > 0" class="text-danger">{{loginModel.respError.join('. ')}}</small>
 			<div class="form-group col-lg-12" ng-class="{'has-error': loginModel.errors.email,'has-success': !loginModel.errors.email}">
@@ -17,7 +16,7 @@
 				<button class="btn btn-primary" ng-click="doLogin(true)">Log In</button>
 			</div>
 		</form>
-		<form class="inline-form center-block col-xs-6" style="max-width: 400px">
+		<form class="inline-form center-block col-sm-6" style="max-width: 400px">
 			<h2>Sign Up</h2>
 			&nbsp;<small ng-show="signupModel.respError.length > 0" class="text-danger">{{signupModel.respError.join('. ')}}</small>
 			<div class="form-group col-lg-12" ng-class="{'has-error': signupModel.errors.email,'has-success': !signupModel.errors.email}">
@@ -38,10 +37,10 @@
 		</form>
 	</div>
 </div>
-<div class="col-lg-12 text-center">
+<div class="col-lg-12 text-center" style="z-index: 1">
 	<div class="col-lg-6 center-block" style="float:none"><hr style="border-color: #ccc"/></div>
 </div>
-<div class="col-lg-12 text-center">
+<div class="col-lg-12 text-center" style="z-index: 0">
 	<button class="btn social-icons twitter" ng-click="doSocial('twitter')"></button>
 	<button class="btn social-icons facebook" ng-click="doSocial('facebook')"></button>
 	<button class="btn social-icons google" ng-click="doSocial('google')"></button>
@@ -49,4 +48,3 @@
 	<button class="btn social-icons psn" ng-click="doSocial('psn')"></button>
 	<button class="btn social-icons xbox" ng-click="doSocial('xbox')"></button>
 </div>
-<?php if(!$isView):?></section><?php endif; ?>

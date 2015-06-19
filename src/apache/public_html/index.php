@@ -1,7 +1,7 @@
 <?php 
 require_once("../includes/autoload.php");
 
-$args = explode("/",$_SERVER['REQUEST_URI']);
+$args = explode("/", preg_replace("/\?.*/","",$_SERVER['REQUEST_URI']));
 if(!empty($args)) {
 	for($k = 0; $k < count($args); $k++){
 		if(empty($args[$k])) {

@@ -14,7 +14,7 @@ class RequestHandler {
 				} elseif(in_array($args[1], array("settings","account"))) {
 					
 				} else {
-					$Controller->actionIndex();
+					$Controller->actionIndex(true);
 				}
 			} elseif(strtolower($args[1]) == "profile") {
 				// profile page
@@ -54,55 +54,8 @@ class RequestHandler {
 			echo $Controller->renderContent();
 			return;
 		} else {
-			if(empty($args) || in_array($args[0], array("home","login","logout","signin","signout","signup","register",	"settings",	"account"))) {
-				// welcome page
-				
-				$Controller = Controller::getInstance("HomepageController");
-				
-				if(!empty($args) && in_array($args[0], array("login","signin"))) {
-					$Controller->actionLogin();
-				} elseif(!empty($args) && in_array($args[0], array("signup","register"))) {
-				} elseif(!empty($args) && in_array($args[0], array("logout","signout"))) {
-				} elseif(!empty($args) && in_array($args[0], array("settings","account"))) {
-					
-				} else {
-					$Controller->actionIndex();
-				}
-			} elseif(strtolower($args[0]) == "profile") {
-				// profile page
-				
-				$Controller = Controller::getInstance("ProfileController");
-				$view = "action" . ucfirst($args[count($args) - 1] != "" ? $args[count($args) - 1] : $args[count($args) - 2]);
-				if(method_exists($Controller, $view)) {
-					$Controller->$view();
-				} else {
-					$Controller->actionIndex();
-				}
-			} elseif(strtolower($args[0]) == "clans" || strtolower($args[0]) == "guilds") {
-				// clans/guilds browse page
-				
-				$Controller = Controller::getInstance("BrowseClansController");
-				$Controller->actionIndex();
-			} elseif(strtolower($args[0]) == "clan" || strtolower($args[0]) == "guild") {
-				// clans/guilds profile page
-				
-				$Controller = Controller::getInstance("ClanProfileController");
-				$Controller->actionIndex();
-			} elseif(strtolower($args[0]) == "players") {
-				// players browse page
-				
-				$Controller = Controller::getInstance("BrowsePlayersController");
-				$Controller->actionIndex();
-			} elseif(strtolower($args[0]) == "player") {
-				// player profile page
-				
-				$Controller = Controller::getInstance("PlayerProfileController");
-				$Controller->actionIndex();
-			} else {
-				// 404 page
-				$Controller = Controller::getInstance("NotFoundController");
-				$Controller->actionIndex();
-			}
+			$Controller = Controller::getInstance("HomepageController");
+			$Controller->actionIndex();
 			
 			$Controller->renderPage();
 		}
