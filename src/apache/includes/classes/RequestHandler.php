@@ -2,42 +2,17 @@
 class RequestHandler {
 	public static function parseRequest(array $args = array()) {
 		$Controller = null;
-		if($args[0] == "view") {
-			if(empty($args) || in_array($args[1], array(
-					"home",
-					"login",
-					"logout",
-					"signin",
-					"signout",
-					"signup",
-					"register",
-					"settings",
-					"account"
-			))) {
+		if(!empty($args) && $args[0] == "view") {
+			if(empty($args) || in_array($args[1], array("home","login","logout","signin","signout","signup","register",	"settings",	"account"))) {
 				// welcome page
 				
 				$Controller = Controller::getInstance("HomepageController");
-				if(in_array($args[1], array(
-						"login",
-						"signin"
-				))) {
+				if(in_array($args[1], array("login","signin"))) {
 					$Controller->actionLogin(true);
-				} elseif(in_array($args[1], array(
-						"signup",
-						"register"
-				))) {
-				} elseif(in_array($args[1], array(
-						"logout",
-						"signout"
-				))) {
-				} elseif(in_array($args[1], array(
-						"settings",
-						"account"
-				))) {
-					$Auth = RestService::getInstance("AuthRestService");
-					if($Auth->isLoggedIn()) {
-					} else {
-					}
+				} elseif(in_array($args[1], array("signup","register"))) {
+				} elseif(in_array($args[1], array("logout","signout"))) {
+				} elseif(in_array($args[1], array("settings","account"))) {
+					
 				} else {
 					$Controller->actionIndex();
 				}
@@ -79,41 +54,17 @@ class RequestHandler {
 			echo $Controller->renderContent();
 			return;
 		} else {
-			if(empty($args) || in_array($args[0], array(
-					"home",
-					"login",
-					"logout",
-					"signin",
-					"signout",
-					"signup",
-					"register",
-					"settings",
-					"account"
-			))) {
+			if(empty($args) || in_array($args[0], array("home","login","logout","signin","signout","signup","register",	"settings",	"account"))) {
 				// welcome page
 				
 				$Controller = Controller::getInstance("HomepageController");
-				if(in_array($args[0], array(
-						"login",
-						"signin"
-				))) {
+				
+				if(!empty($args) && in_array($args[0], array("login","signin"))) {
 					$Controller->actionLogin();
-				} elseif(in_array($args[0], array(
-						"signup",
-						"register"
-				))) {
-				} elseif(in_array($args[0], array(
-						"logout",
-						"signout"
-				))) {
-				} elseif(in_array($args[0], array(
-						"settings",
-						"account"
-				))) {
-					$Auth = RestService::getInstance("AuthRestService");
-					if($Auth->isLoggedIn()) {
-					} else {
-					}
+				} elseif(!empty($args) && in_array($args[0], array("signup","register"))) {
+				} elseif(!empty($args) && in_array($args[0], array("logout","signout"))) {
+				} elseif(!empty($args) && in_array($args[0], array("settings","account"))) {
+					
 				} else {
 					$Controller->actionIndex();
 				}

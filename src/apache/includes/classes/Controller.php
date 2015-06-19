@@ -18,7 +18,6 @@ abstract class Controller {
 			$Instance = new $classname();
 			$Instance->Template = TemplateFactory::startTemplate();
 			$Instance->setUp();
-			$Instance->Template->setTemplateVariable("Auth",RestService::getInstance("AuthRestService"));
 			return $Instance;
 		} else {
 			throw new InvalidChildException(__CLASS__, $classname);

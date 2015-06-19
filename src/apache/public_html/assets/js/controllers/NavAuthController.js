@@ -1,4 +1,10 @@
 app.controller("NavAuthController",function($scope,$modal) {
+	$scope.isAuth = false;
+	
+	$scope.$on('isUserAuth',function(event,bool) {
+		$scope.isAuth = bool;
+	});
+	
 	angular.element(document).ready(function() {
 		angular.element("ul.nav.navbar-nav.navbar-right").click(function(e) {
 			e.preventDefault;

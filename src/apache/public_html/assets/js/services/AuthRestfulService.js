@@ -1,14 +1,18 @@
 (function() {
 	var Instance = null;
 	
-	app.factory("AuthRestfulService",['$cookies','RestfulService',function($cookies,RestfulService){
+	app.factory("AuthRestfulService",['$cookies','$rootScope','RestfulService',function($cookies,$rootScope,RestfulService){
 		if(Instance == null) {
+			var userCookie = "rpz_auth_user";
+			var tokenCookie = "rpz_auth_token";
+			
 			var AuthRestfulService = function() {
 				var service = "auth/";
+				var isAuth = false;
 				this.checkLogin = function(callback) {
 					var args = {
-							username: $cookies.get('rpz_auth_user'),
-							token: $cookies.get('rpz_auth_token')
+							id: $cookies[userCookie],
+							token: $cookies[tokenCookie]
 					};
 					RestfulService.get(service+'validate',args,function(data){
 						//SuccessCb
@@ -22,7 +26,15 @@
 				};
 				
 				this.storeCreds = function(UserModel) {
-					
+					$cookies[userCookie] = UserModel._id;
+					$cookies[tokenCookie] = UserModel.token;
+					that.checkLogin(function(resp){
+						if(resp.ok) {
+							isAuth = resp.data;
+							console.log(isAuth);
+							$rootScope.$broadcast("isUserAuth",isAuth);
+						}
+					})
 				};
 				
 				this.doSignup = function(email, password, callback) {
@@ -56,6 +68,8 @@
 						console.log(data);
 					});
 				};
+				
+				var that = this;
 			};
 			
 			Instance = new AuthRestfulService();

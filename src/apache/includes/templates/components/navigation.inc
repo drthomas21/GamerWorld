@@ -15,14 +15,11 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <!-- li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li -->
-        <?php if($Auth->isLoggedIn()): ?>
-        <li <?= ($activeTab == "profile" ? "class='active'" : "" )?>><a href="/profile">Profile</a></li>
-        <?php endif;?>
-        <li <?= ($activeTab == "clans" ? "class='active'" : "" )?>><a href="/clans">Clans / Guilds</a></li>
-        <li <?= ($activeTab == "players" ? "class='active'" : "" )?>><a href="/players">Players</a></li>
+        <li <?= (isset($activeTab) && $activeTab == "profile" ? "class='active'" : "" )?>><a href="/profile">Profile</a></li>
+        <li <?= (isset($activeTab) && $activeTab == "clans" ? "class='active'" : "" )?>><a href="/clans">Clans / Guilds</a></li>
+        <li <?= (isset($activeTab) && $activeTab == "players" ? "class='active'" : "" )?>><a href="/players">Players</a></li>
       </ul>
-      <?php if($Auth->isLoggedIn()): ?>
-      <ul class="nav navbar-nav navbar-right col-sm-1" ng-controller="NavAuthController">      	
+      <ul class="nav navbar-nav navbar-right col-sm-1" ng-controller="NavAuthController" ng-show="isAuth">      	
         <li class="dropdown pull-left">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"  aria-hidden="true"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -31,11 +28,9 @@
           </ul>
         </li>        
       </ul>
-      <?php else: ?>
-      <ul class="nav navbar-nav navbar-right col-sm-3" ng-controller="NavAuthController">
+      <ul class="nav navbar-nav navbar-right col-sm-3" ng-controller="NavAuthController" ng-hide="isAuth">
       	<li class="text-center col-lg-12 login"><a href="/login">Log In / Sign Up</a></li>
       </ul>
-      <?php endif; ?>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
