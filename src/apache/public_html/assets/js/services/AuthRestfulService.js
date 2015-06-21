@@ -37,6 +37,13 @@
 				this.releaseCreds = function() {
 					delete $cookies[userCookie];
 					delete $cookies[tokenCookie];
+				};
+				
+				this.getCreds = function() {
+					return {
+						user: $cookies[userCookie],
+						token: $cookies[tokenCookie]						
+					};
 				}
 				
 				this.doSignup = function(email, password, callback) {

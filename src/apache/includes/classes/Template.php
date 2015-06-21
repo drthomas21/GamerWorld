@@ -22,6 +22,7 @@ class Template extends TemplateFactory {
 		$this->addHeaderScript("restfulService", "/assets/js/services/RestfulService.js",array(self::ANGULAR,"angularApp"));
 		$this->addHeaderScript("locationService", "/assets/js/services/LocationService.js",array(self::ANGULAR,"angularApp"));
 		$this->addHeaderScript("authRestfulService", "/assets/js/services/AuthRestfulService.js",array(self::ANGULAR,"restfulService"));
+		$this->addHeaderScript("profileRestfulService", "/assets/js/services/ProfileRestfulService.js",array(self::ANGULAR,"restfulService","authRestfulService"));
 		
 		$this->addHeaderScript("navAuthController", "/assets/js/controllers/NavAuthController.js",array(self::ANGULAR,"authRestfulService"));
 		$this->addHeaderScript("loginController", "/assets/js/controllers/LoginController.js",array(self::ANGULAR,"authRestfulService"));

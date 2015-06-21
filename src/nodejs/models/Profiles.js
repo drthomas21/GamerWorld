@@ -1,22 +1,24 @@
-var GamerTags = require('GamerTags.js');
+var GamerTags = require('./GamerTags.js');
+var imagePathValidator = [function(path){
+	//TODO: flush out image path validation
+	return true;
+}, "Image does not exists"];
+var Profiles = null;
 
 module.exports = function(mongoose) {
-	var imagePathValidator = [function(path){
-		//TODO: flush out image path validation
-		return true;
-	}, "Image does not exists"];
-	
-	var Schema = mongoose.Schema;
-	
-	var Profiles = mongoose.model("Profiles", new Schema({
-		userId:			Schema.Types.ObjectId,
-		gamerTags:      [GamerTags],
-		friendIds:		[Schema.Types.ObjectId],
-		follwerIds:		[Schema.Types.ObjectId],
-		displayName:	String,
-		profileImage:	{type: String, validator: imagePathValidator},
-		description:    String
-	}));
+	if(Profiles == null) {	
+		var Schema = mongoose.Schema;
+		
+		var Profiles = mongoose.model("Profiles", new Schema({
+			userId:			{type: Schema.Types.ObjectId, unique: true},
+			gamerTags:      [GamerTags],
+			friendIds:		[Schema.Types.ObjectId],
+			follwerIds:		[Schema.Types.ObjectId],
+			displayName:	String,
+			profileImage:	{type: String, validator: imagePathValidator},
+			description:    String
+		}));
+	}
 	
 	return {
 		create: function() {

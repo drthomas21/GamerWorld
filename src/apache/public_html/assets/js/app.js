@@ -17,6 +17,10 @@ var app = angular.module("rpzone",['ngCookies','ngRoute','ngSanitize','ui.bootst
 			templateUrl: 'view/profile',
 			controller: 'ProfileController'
 		})
+		.when('/profile/:id', {
+			templateUrl: 'view/profile',
+			controller: 'ProfileController'
+		})
 		
 		.otherwise({
 			redirectTo: '/'

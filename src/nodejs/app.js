@@ -77,6 +77,7 @@ server.use(bodyParser.json());
 //CORS
 server.options('*',cors({origin: config.express.allowedDomain}));
 require('./routes/auth')(server,mongoose,ResponseClass,config);
+require('./routes/profile')(server,mongoose,ResponseClass,config);
 
 //Start server
 server.listen(config.express.port,function() {

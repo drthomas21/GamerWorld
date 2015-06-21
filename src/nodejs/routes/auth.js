@@ -3,8 +3,8 @@ module.exports = function(server,mongoose,ResponseClass,config) {
 	var sha256 = require('sha256');
 	var Users = require('../models/Users.js')(mongoose);
 	var AccountType = require('../models/AccountType.js')();
-	var generateToken = function(req) {
-		return sha256(req.body.email + req.connection.remoteAddress + (new Date()));
+	var generateToken = function(Model, req) {
+		return sha256(Model.email + req.connection.remoteAddress + (Model.tokenDate));
 	}
 	
 	/**
@@ -53,7 +53,8 @@ module.exports = function(server,mongoose,ResponseClass,config) {
 						Model = Users.create();
 						Model.email = email;
 						Model.password = password;
-						Model.token = generateToken(req);
+						Model.tokenDate = new Date();
+						Model.token = generateToken(Model, req);
 						Model.save(function(error,Instance) {
 							if(error) {
 								Response.notOkay();
@@ -116,7 +117,8 @@ module.exports = function(server,mongoose,ResponseClass,config) {
 						});
 						
 						if(Model != null) {
-							Model.token = Model.token = generateToken(req);
+							Model.tokenDate = new Date();
+							Model.token = generateToken(Model, req);
 							Model.save(function(error,Instance) {
 								if(error) {
 									Response.notOkay();
