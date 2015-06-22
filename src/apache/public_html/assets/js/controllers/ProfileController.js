@@ -43,6 +43,10 @@ app.controller('ProfileController',function($scope,$routeParams,AuthRestfulServi
 					for(var i in resp.data) {
 						$scope.Profile[i] = resp.data[i];
 					}
+
+					if($scope.Profile.profileImage.length == 0) {
+						$scope.Profile.profileImage = "/assets/img/profile-pic.jpg";
+					}
 					
 					var creds = AuthRestfulService.getCreds();
 					$scope.Profile.isUser = $scope.Profile.userId == creds.user;
